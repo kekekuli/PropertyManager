@@ -53,7 +53,17 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="house_id"/>
+      <widget class="QLineEdit" name="house_id">
+       <property name="maximumSize">
+        <size>
+         <width>16777210</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="maxLength">
+        <number>16</number>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="Label_2">
@@ -63,7 +73,11 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="name"/>
+      <widget class="QLineEdit" name="name">
+       <property name="maxLength">
+        <number>16</number>
+       </property>
+      </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="Label_3">
@@ -73,7 +87,11 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="password"/>
+      <widget class="QLineEdit" name="password">
+       <property name="maxLength">
+        <number>16</number>
+       </property>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="Label_4">
@@ -147,7 +165,11 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="area"/>
+      <widget class="QLineEdit" name="area">
+       <property name="maxLength">
+        <number>8</number>
+       </property>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="Label_8">
@@ -174,7 +196,11 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="phone"/>
+      <widget class="QLineEdit" name="phone">
+       <property name="maxLength">
+        <number>18</number>
+       </property>
+      </widget>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="Label_5">
