@@ -1,31 +1,3 @@
-import pymysql
-import sys
-import signupUI
-import PyQt5.QtGui
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtCore import QObject
-from PyQt5.QtCore import QDate
-import error
-
-
-
-class manager:
-    db = None
-    app = None
-    ui_lists = {'signin': None, 'signup': None}
-    window_lists = {'sigin': None, 'signup': None}
-    @staticmethod
-    def link_to_db():
-        default_host = 'localhost'
-        default_user = 'root'
-        default_password = '88888888'
-        default_database = 'property'
-        if manager.db is None:
-            manager.db = pymysql.connect(host=default_host,
-                                         user=default_user,
-                                         password=default_password,
-                                         database=default_database)
-        return manager.db
 
 
     @staticmethod
@@ -61,8 +33,8 @@ class manager:
 
     @staticmethod
     def create_signup():
-        if manager.ui_lists['signup'] is None:
-            manager.ui_lists['signup'] = ui = signupUI.Ui_MainWindow()
+        if globals.ui_lists['signup'] is None:
+            globals.ui_lists['signup'] = ui = signupUI.Ui_MainWindow()
         else:
             ui = manager.ui_lists['signup']
         if manager.window_lists['signup'] is None:
@@ -115,6 +87,7 @@ class manager:
         print(datas)
         return datas
 
+    # return -1 if data not formatted
     @staticmethod
     def parse_signup_data(datas):
         try:
@@ -132,10 +105,10 @@ class manager:
             datas['area'] = data
 
             if len(datas['house_id']) == 0 or len(datas['password']) == 0 \
-                or len(datas['name']) == 0:
+                    or len(datas['name']) == 0:
                 raise ValueError()
 
-            return data
+            return 0
 
         except ValueError:
             print("Through Value Error")
@@ -145,10 +118,15 @@ class manager:
             error_ui.setupUi(main_window.error_window)
             main_window.error_window.show()
             error_ui.ensure.clicked.connect(main_window.error_window.close)
-            return
+            return -1
 
+    @staticmethod
+    def send_signup_data(datas):
+        return
     @staticmethod
     def submit():
         datas = manager.get_signup_date()
-        manager.parse_signup_data(datas)
-        db = manager.link_to_db()
+        flag = manager.parse_signup_data(datas)
+        if flag == -1:
+            return
+        manager.send_signup_data(datas)

@@ -1,8 +1,4 @@
-import sys
-import signupUI
-from Managers.manager import manager
-from signupUI import *
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from modules.manager import manager
 
 if __name__ == '__main__':
     app = manager.create_app()
