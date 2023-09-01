@@ -1,4 +1,5 @@
-#引入pymysql模块
+# https://www.cnblogs.com/benben-wu/p/10109113.html
+# 引入pymysql模块
 import pymysql
 
 class database:

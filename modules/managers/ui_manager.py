@@ -6,7 +6,9 @@ from modules.UI.UI_use import signup_use,error_use
 from PyQt5.QtWidgets import QApplication
 
 class ui_manager:
-
+    @staticmethod
+    def setup():
+        pass
     @staticmethod
     def create_signup():
         if global_vars.window_list['signup'] is None:
@@ -18,8 +20,3 @@ class ui_manager:
         _error = error_use.error()
         return _error
 
-    @staticmethod
-    def create_db():
-        if global_vars.db is None:
-            global_vars.db = database.database()
-        return global_vars.db

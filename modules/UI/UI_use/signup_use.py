@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
+
+import modules.managers.manager
 from modules import global_vars
 from modules.UI.UI_resourse import signupUI
 from modules.managers import manager
@@ -23,7 +25,7 @@ class signup:
         flag = self.parse_data(datas)
         if flag == -1:
             return
-        #manager.send_signup_data(datas)
+        modules.managers.manager.manager.database_manager.add_household(datas)
         return
     def close(self):
         self.window.close()
@@ -41,7 +43,7 @@ class signup:
                 if ch < '0' or ch > '9':
                     raise ValueError('输入有非法字符')
 
-            #data = datas['phone']
+            data = datas['phone']
             for ch in data:
                 if ch < '0' or ch > '9':
                     raise ValueError('输入有非法字符')
@@ -50,7 +52,7 @@ class signup:
             datas['area'] = data
 
             if len(datas['house_id']) == 0 or len(datas['password']) == 0 \
-                    or len(datas['name']) == 0 or len(datas['phone']) == 0:
+                    or len(datas['owner_name']) == 0 or len(datas['phone']) == 0:
                 raise ValueError('长度有误')
 
             return 0
@@ -71,7 +73,7 @@ class signup:
 
         datas = dict()
         datas['house_id'] = ui.house_id.text()
-        datas['name'] = ui.name.text()
+        datas['owner_name'] = ui.name.text()
         datas['password'] = ui.password.text()
 
         # In yyyy-mm-dd
