@@ -1,20 +1,31 @@
-import pymysql
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from modules.UI.UI_resourse import error
-from global_vars import globals
-from UI.UI_use import *
+
+import pymysql
+from modules import global_vars, database
+from modules.UI.UI_use import signup_use,error_use
+from PyQt5.QtWidgets import QApplication
 
 class manager:
     @staticmethod
-    def get_db():
-        default_host = 'localhost'
-        default_user = 'root'
-        default_password = '88888888'
-        default_database = 'property'
-        if globals.db is None:
-            globals.db = pymysql.connect(host=default_host,
-                                         user=default_user,
-                                         password=default_password,
-                                         database=default_database)
-        return globals.db
+    def setup():
+        global_vars.app = QApplication(sys.argv)
+
+    @staticmethod
+    def wait_for_end():
+        sys.exit(global_vars.app.exec())
+    @staticmethod
+    def create_signup():
+        if global_vars.window_list['signup'] is None:
+            global_vars.window_list['signup'] = signup_use.signup()
+        return global_vars.window_list['signup']
+
+    @staticmethod
+    def create_error():
+        _error = error_use.error()
+        return _error
+
+    @staticmethod
+    def create_db():
+        if global_vars.db is None:
+            global_vars.db = database.database()
+        return global_vars.db

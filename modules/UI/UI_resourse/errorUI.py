@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'error.ui'
+# Form implementation generated from reading ui file 'errorUI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -17,16 +17,16 @@ class Ui_Form(object):
         Form.resize(150, 100)
         Form.setMinimumSize(QtCore.QSize(150, 100))
         Form.setMaximumSize(QtCore.QSize(150, 100))
-        self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(40, 10, 61, 31))
+        self.message = QtWidgets.QLabel(Form)
+        self.message.setGeometry(QtCore.QRect(40, 10, 61, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setStyleSheet("font: 24px;")
-        self.label.setScaledContents(False)
-        self.label.setObjectName("label")
+        sizePolicy.setHeightForWidth(self.message.sizePolicy().hasHeightForWidth())
+        self.message.setSizePolicy(sizePolicy)
+        self.message.setStyleSheet("font: 24px;")
+        self.message.setScaledContents(False)
+        self.message.setObjectName("message")
         self.ensure = QtWidgets.QPushButton(Form)
         self.ensure.setGeometry(QtCore.QRect(20, 60, 100, 32))
         self.ensure.setObjectName("ensure")
@@ -37,5 +37,5 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "错误！"))
+        self.message.setText(_translate("Form", "错误！"))
         self.ensure.setText(_translate("Form", "确认"))
