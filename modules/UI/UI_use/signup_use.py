@@ -1,7 +1,9 @@
-from ..UI_resourse import signupUI
-from PyQt5.QtWidgets import QWidget, QMainWindow
+from PyQt5.QtWidgets import QMainWindow
 from modules import global_vars
-from modules import manager
+from modules.UI.UI_resourse import signupUI
+from modules.managers import manager
+
+
 class signup:
     def __init__(self):
         self.ui = signupUI.Ui_MainWindow()
@@ -55,7 +57,7 @@ class signup:
 
         except ValueError as e:
             print("Through Value Error")
-            _error = manager.manager.create_error()
+            _error = manager.ui_manager.create_error()
             self.addChild(_error)
             _error.show()
             return -1

@@ -5,14 +5,8 @@ from modules import global_vars, database
 from modules.UI.UI_use import signup_use,error_use
 from PyQt5.QtWidgets import QApplication
 
-class manager:
-    @staticmethod
-    def setup():
-        global_vars.app = QApplication(sys.argv)
+class ui_manager:
 
-    @staticmethod
-    def wait_for_end():
-        sys.exit(global_vars.app.exec())
     @staticmethod
     def create_signup():
         if global_vars.window_list['signup'] is None:
