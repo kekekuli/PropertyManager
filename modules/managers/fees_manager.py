@@ -1,5 +1,5 @@
 # used for manage property fees info
-class fees_manager:
+class core:
     @staticmethod
     def setup():
         print('fees_manager loading...')

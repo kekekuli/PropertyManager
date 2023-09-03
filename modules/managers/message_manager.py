@@ -1,5 +1,5 @@
 # used for manage messages
-class message_manager:
+class core:
     @staticmethod
     def setup():
         print('message_manager loading...')

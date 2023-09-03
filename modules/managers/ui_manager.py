@@ -2,10 +2,10 @@ import sys
 
 import pymysql
 from modules import global_vars, database
-from modules.UI.UI_use import signup_use,error_use
+from modules.UI.UI_use import signup_use,error_use, signin_use
 from PyQt5.QtWidgets import QApplication
 
-class ui_manager:
+class core:
     @staticmethod
     def setup():
         pass
@@ -19,4 +19,8 @@ class ui_manager:
     def create_error():
         _error = error_use.error()
         return _error
-
+    @staticmethod
+    def create_signin():
+        if global_vars.window_list['signin'] is None:
+            global_vars.window_list['signin'] = signin_use.signin()
+        return global_vars.window_list['signin']

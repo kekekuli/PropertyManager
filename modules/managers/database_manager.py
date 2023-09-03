@@ -3,14 +3,14 @@ from modules import global_vars
 from modules.database import database
 
 
-class database_manager:
+class core:
     @staticmethod
     def setup():
         print('database_manager loading...')
 
         if global_vars.db is None:
-            database_manager.get_db()
-        database_manager.db = global_vars.db
+            core.get_db()
+        core.db = global_vars.db
 
 
     @staticmethod
@@ -30,9 +30,19 @@ class database_manager:
                   datas['profession'], datas['start_time'], datas['area'], datas['population'], datas['phone'])
         print(sql)
         try:
-            result = database_manager.db.insert_one(sql)
+            result = core.db.insert_one(sql)
         except Exception as e:
             print('error at insert data:' + str(e))
+    @staticmethod
+    def signin_auth(house_id, password):
+        sql = 'select * from household where house_id = "{}" and password = "{}"'.format(house_id, password)
+        print(sql)
+        result = core.db.fetchAll(sql);
+        if len(result) == 0:
+            print("No user exist")
+        for item in result:
+            print(item)
+        return
     @staticmethod
     def add_message():
         pass

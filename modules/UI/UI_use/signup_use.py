@@ -1,10 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
-
-import modules.managers.manager
 from modules import global_vars
 from modules.UI.UI_resourse import signupUI
 from modules.managers import manager
-
 
 class signup:
     def __init__(self):
@@ -25,14 +22,14 @@ class signup:
         flag = self.parse_data(datas)
         if flag == -1:
             return
-        modules.managers.manager.manager.database_manager.add_household(datas)
+        manager.manager.database_manager.add_household(datas)
         return
     def close(self):
         self.window.close()
         global_vars.window_list['signup'] = None
         del self
         return
-    def addChild(self, child):
+    def add_Child(self, child):
         self.childs.append(child)
         return
 
@@ -64,7 +61,7 @@ class signup:
                 _error.set_message('数值有误')
             else:
                 _error.set_message('长度有误')
-            self.addChild(_error)
+            self.add_Child(_error)
             _error.show()
             return -1
 

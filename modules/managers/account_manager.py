@@ -1,5 +1,5 @@
 # used for manage accounts of household
-class account_manager:
+class core:
     @staticmethod
     def setup():
         print('account_manager loading...')
