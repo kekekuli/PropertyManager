@@ -56,7 +56,7 @@ class signup:
 
         except ValueError as e:
             print("Through Value Error:" + str(e))
-            _error = manager.ui_manager.create_error()
+            _error = manager.manager.ui_manager.create_error()
             if str(e) != '长度有误':
                 _error.set_message('数值有误')
             else:

@@ -24,3 +24,6 @@ class core:
         if global_vars.window_list['signin'] is None:
             global_vars.window_list['signin'] = signin_use.signin()
         return global_vars.window_list['signin']
+    @staticmethod
+    def create_queryfee():
+        pass
