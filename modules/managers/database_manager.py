@@ -50,3 +50,15 @@ class core:
     @staticmethod
     def add_fees():
         pass
+
+    # 以字典形式返回一条物业费数据，不存在返回空
+    @staticmethod
+    def query_fee(house_id):
+        sql = 'select * from fees where house_id = "{}"'.format(house_id)
+        print(sql)
+        result = core.db.fetchAll(sql);
+        if len(result) == 0:
+            return {}
+        else:
+            return result[0]
+

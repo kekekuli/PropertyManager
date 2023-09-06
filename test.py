@@ -13,3 +13,10 @@ class test:
         signin = manager.ui_manager.create_signin()
         signin.show()
         manager.wait_for_end()
+
+    @staticmethod
+    def test_queryfee():
+        manager.setup()
+        queryfee = manager.ui_manager.create_queryfee()
+        queryfee.show()
+        manager.wait_for_end()

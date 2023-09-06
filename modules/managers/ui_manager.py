@@ -2,7 +2,7 @@ import sys
 
 import pymysql
 from modules import global_vars, database
-from modules.UI.UI_use import signup_use,error_use, signin_use
+from modules.UI.UI_use import signup_use, error_use, signin_use, queryfee_use
 from PyQt5.QtWidgets import QApplication
 
 class core:
@@ -26,4 +26,6 @@ class core:
         return global_vars.window_list['signin']
     @staticmethod
     def create_queryfee():
-        pass
+        if global_vars.window_list['queryfee'] is None:
+            global_vars.window_list['queryfee'] = queryfee_use.queryfee()
+        return global_vars.window_list['queryfee']

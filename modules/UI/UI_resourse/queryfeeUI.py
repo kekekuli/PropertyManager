@@ -33,10 +33,10 @@ class Ui_Form(object):
         self.label_2.setGeometry(QtCore.QRect(70, 100, 61, 16))
         self.label_2.setObjectName("label_2")
         self.ensure = QtWidgets.QPushButton(Form)
-        self.ensure.setGeometry(QtCore.QRect(260, 50, 41, 32))
+        self.ensure.setGeometry(QtCore.QRect(260, 50, 51, 32))
         self.ensure.setObjectName("ensure")
         self.cancel = QtWidgets.QPushButton(Form)
-        self.cancel.setGeometry(QtCore.QRect(260, 80, 41, 32))
+        self.cancel.setGeometry(QtCore.QRect(260, 80, 51, 32))
         self.cancel.setObjectName("cancel")
 
         self.retranslateUi(Form)
