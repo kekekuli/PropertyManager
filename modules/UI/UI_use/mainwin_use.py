@@ -4,12 +4,12 @@ from PyQt5.QtWidgets import QMainWindow
 from modules.managers import manager
 from modules import global_vars
 
-class mainwin():
-    def __init__(self):
+class mainwin(QMainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.ui = mainwinUI.Ui_Form()
-        self.window = QMainWindow()
-        self.window.setWindowTitle("Main window")
-        self.ui.setupUi(self.window)
+        self.setWindowTitle("Main window")
+        self.ui.setupUi(self)
         self.childs = []
 
         self.ui.test1.clicked.connect(self.show_signin)
@@ -20,6 +20,7 @@ class mainwin():
     def show_signin(self):
         signin = manager.manager.ui_manager.create_signin()
         self.addChild(signin)
+        signin.signinStatus.connect(self.accept_msg)
         signin.show()
     def show_signup(self):
         signup = manager.manager.ui_manager.create_signup()
@@ -35,10 +36,9 @@ class mainwin():
         selfinfo.show()
     def addChild(self, child):
         self.childs.append(child)
-    def show(self):
-        self.window.show()
-        return
     def close(self):
-        self.window.close()
+        self.close()
         global_vars.window_list['mainwin'] = None
         del self
+    def accept_msg(self, house_id):
+        print(house_id)

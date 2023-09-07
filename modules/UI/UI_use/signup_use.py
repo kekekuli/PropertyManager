@@ -3,19 +3,16 @@ from modules import global_vars
 from modules.UI.UI_resourse import signupUI
 from modules.managers import manager
 
-class signup:
-    def __init__(self):
+class signup(QMainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.ui = signupUI.Ui_MainWindow()
-        self.window = QMainWindow()
-        self.window.setWindowTitle("singup")
-        self.ui.setupUi(self.window)
+        self.setWindowTitle("singup")
+        self.ui.setupUi(self)
         self.childs = []
 
         self.ui.cancel.clicked.connect(self.close)
         self.ui.submit.clicked.connect(self.submit)
-        return
-    def show(self):
-        self.window.show()
         return
     def submit(self):
         datas = self.get_datas()
@@ -25,7 +22,7 @@ class signup:
         manager.manager.database_manager.add_household(datas)
         return
     def close(self):
-        self.window.close()
+        self.close()
         global_vars.window_list['signup'] = None
         del self
         return

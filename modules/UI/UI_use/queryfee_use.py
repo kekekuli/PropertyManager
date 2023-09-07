@@ -3,12 +3,12 @@ from PyQt5.QtWidgets import QMainWindow
 from modules import global_vars
 from modules.managers import manager
 
-class queryfee:
-    def __init__(self):
+class queryfee(QMainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.ui = queryfeeUI.Ui_Form()
-        self.window = QMainWindow()
-        self.window.setWindowTitle("query fee")
-        self.ui.setupUi(self.window)
+        self.setWindowTitle("query fee")
+        self.ui.setupUi(self)
         self.childs = []
 
         self.ui.cancel.clicked.connect(self.close)
@@ -27,12 +27,9 @@ class queryfee:
             _error.show()
         return 0
     def close(self):
-        self.window.close()
+        self.close()
         global_vars.window_list['queryfee'] = None
         del self
-        return
-    def show(self):
-        self.window.show()
         return
     def display_datas(self, datas):
         textlines = self.ui.display
