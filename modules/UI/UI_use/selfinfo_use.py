@@ -13,11 +13,6 @@ class selfinfo(QMainWindow):
         self.ui.cancel.clicked.connect(self.close)
         self.ui.ensure.clicked.connect(self.submit)
         return
-    def close(self):
-        self.close()
-        global_vars.window_list['selfinfo'] = None
-        del self
-        return
     def submit(self):
         pass
     def addChild(self, child):

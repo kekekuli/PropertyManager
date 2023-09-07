@@ -21,11 +21,6 @@ class signup(QMainWindow):
             return
         manager.manager.database_manager.add_household(datas)
         return
-    def close(self):
-        self.close()
-        global_vars.window_list['signup'] = None
-        del self
-        return
     def add_Child(self, child):
         self.childs.append(child)
         return

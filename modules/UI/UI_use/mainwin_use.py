@@ -36,9 +36,5 @@ class mainwin(QMainWindow):
         selfinfo.show()
     def addChild(self, child):
         self.childs.append(child)
-    def close(self):
-        self.close()
-        global_vars.window_list['mainwin'] = None
-        del self
     def accept_msg(self, house_id):
         print(house_id)

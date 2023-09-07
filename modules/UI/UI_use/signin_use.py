@@ -19,11 +19,6 @@ class signin(QMainWindow):
         self.ui.cancel.clicked.connect(self.close)
         self.ui.ensure.clicked.connect(self.submit)
 
-    def close(self):
-        self.close()
-        del self
-        global_vars.window_list['signin'] = None
-        return
     def get_datas(self):
         datas = {}
         datas['house_id'] = self.ui.house_id.text()

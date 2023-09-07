@@ -26,11 +26,6 @@ class queryfee(QMainWindow):
             self.addChild(_error)
             _error.show()
         return 0
-    def close(self):
-        self.close()
-        global_vars.window_list['queryfee'] = None
-        del self
-        return
     def display_datas(self, datas):
         textlines = self.ui.display
 
