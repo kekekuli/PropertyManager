@@ -5,6 +5,7 @@ class error:
     def __init__(self):
         self.ui = errorUI.Ui_Form()
         self.window = QMainWindow()
+        self.window.setWindowTitle('error')
         self.ui.setupUi(self.window)
 
         self.ui.ensure.clicked.connect(self.close)

@@ -8,13 +8,14 @@ class mainwin():
     def __init__(self):
         self.ui = mainwinUI.Ui_Form()
         self.window = QMainWindow()
-        self.window.setWindowTitle("Main title")
+        self.window.setWindowTitle("Main window")
         self.ui.setupUi(self.window)
         self.childs = []
 
         self.ui.test1.clicked.connect(self.show_signin)
         self.ui.test2.clicked.connect(self.show_signup)
         self.ui.test3.clicked.connect(self.show_queryfee)
+        self.ui.test4.clicked.connect(self.show_selfinfo)
 
     def show_signin(self):
         signin = manager.manager.ui_manager.create_signin()
@@ -28,6 +29,10 @@ class mainwin():
         queryfee = manager.manager.ui_manager.create_queryfee()
         self.addChild(queryfee)
         queryfee.show()
+    def show_selfinfo(self):
+        selfinfo = manager.manager.ui_manager.create_selfinfo()
+        self.addChild(selfinfo)
+        selfinfo.show()
     def addChild(self, child):
         self.childs.append(child)
     def show(self):

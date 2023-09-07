@@ -5,7 +5,8 @@ import sys
 
 import pymysql
 from modules import global_vars, database
-from modules.UI.UI_use import signup_use, error_use, signin_use, queryfee_use, mainwin_use
+from modules.UI.UI_use import signup_use, error_use, signin_use,\
+    queryfee_use, mainwin_use, selfinfo_use
 from PyQt5.QtWidgets import QApplication
 
 class core:
@@ -32,6 +33,11 @@ class core:
         if global_vars.window_list['queryfee'] is None:
             global_vars.window_list['queryfee'] = queryfee_use.queryfee()
         return global_vars.window_list['queryfee']
+    @staticmethod
+    def create_selfinfo():
+        if global_vars.window_list['selfinfo'] is None:
+            global_vars.window_list['selfinfo'] = selfinfo_use.selfinfo()
+        return global_vars.window_list['selfinfo']
     @staticmethod
     def create_mainwin():
         if global_vars.window_list['mainwin'] is None:
