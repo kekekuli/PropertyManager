@@ -1,3 +1,7 @@
-from test import test
+from modules.managers import manager
+
 if __name__ == '__main__':
-    test.test_queryfee()
+    manager.manager.setup()
+    mainwin = manager.manager.ui_manager.create_mainwin()
+    mainwin.show()
+    manager.manager.wait_for_end()

@@ -22,17 +22,18 @@ class core:
     @staticmethod
     def add_household(datas):
         sql = """insert into `household`(
-                house_id, password, owner_name, gender,
+                house_id, password, name, gender,
                 profession, start_time, area, population, phone) 
                 values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"""
 
-        sql = sql % (datas['house_id'], datas['password'], datas['owner_name'], datas['gender'],
+        sql = sql % (datas['house_id'], datas['password'], datas['name'], datas['gender'],
                   datas['profession'], datas['start_time'], datas['area'], datas['population'], datas['phone'])
         print(sql)
         try:
             result = core.db.insert_one(sql)
         except Exception as e:
             print('error at insert data:' + str(e))
+    # return 0 if house_id not existed in database
     @staticmethod
     def signin_auth(house_id, password):
         sql = 'select * from household where house_id = "{}" and password = "{}"'.format(house_id, password)
@@ -42,7 +43,7 @@ class core:
             print("No user exist")
         for item in result:
             print(item)
-        return
+        return len(result)
     @staticmethod
     def add_message():
         pass

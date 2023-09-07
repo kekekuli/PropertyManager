@@ -30,8 +30,8 @@ class signin:
         return datas
     def submit(self):
         datas = self.get_datas()
-        manager.manager.database_manager.signin_auth(datas['house_id'], datas['password']);
-        return
+        result = manager.manager.database_manager.signin_auth(datas['house_id'], datas['password']);
+        return (datas['house_id'], result)
 
     def addChild(self, child):
         self.childs.append(child)
