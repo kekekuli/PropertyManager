@@ -35,6 +35,17 @@ class core:
             print('error at insert data:' + str(e))
     # return 0 if house_id not existed in database
     @staticmethod
+    def get_household(house_id):
+        sql = 'select * from household where house_id="{}"'.format(house_id)
+        try:
+            result = core.db.fetchAll(sql)
+            if len(result) == 0:
+                return None
+            else:
+                return result[0]
+        except Exception as e:
+            print('error at insert data:' + str(e))
+    @staticmethod
     def signin_auth(house_id, password):
         sql = 'select * from household where house_id = "{}" and password = "{}"'.format(house_id, password)
         print(sql)

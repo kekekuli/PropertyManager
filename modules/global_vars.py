@@ -6,3 +6,4 @@ window_list = {'signup': None,
                'selfinfo': None,
                'mainwin' : None,
                }
+signinID = None

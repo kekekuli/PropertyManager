@@ -56,7 +56,6 @@ class signup(QMainWindow):
             self.add_Child(_error)
             _error.show()
             return -1
-
     def get_datas(self):
         ui = self.ui
 

@@ -12,3 +12,7 @@ class error(QMainWindow):
         return
     def set_message(self, str):
         self.ui.message.setText(str)
+    def set_size(self, size):
+        font = self.font()
+        font.setPointSize(size)
+        self.ui.message.setFont(font)

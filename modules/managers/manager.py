@@ -8,6 +8,7 @@ from modules.managers import database_manager
 
 from modules import global_vars
 from PyQt5.QtWidgets import QApplication
+
 class manager:
     @staticmethod
     def setup():
@@ -28,3 +29,12 @@ class manager:
     @staticmethod
     def wait_for_end():
         sys.exit(global_vars.app.exec())
+    @staticmethod
+    def login(house_id):
+        global_vars.signinID = house_id
+    @staticmethod
+    def logout():
+        global_vars.signinID = None
+    @staticmethod
+    def get_log_statu():
+        return global_vars.signinID

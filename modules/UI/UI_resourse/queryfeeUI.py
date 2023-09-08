@@ -18,7 +18,7 @@ class Ui_Form(object):
         Form.setMinimumSize(QtCore.QSize(400, 300))
         Form.setMaximumSize(QtCore.QSize(400, 300))
         self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(110, 10, 171, 41))
+        self.label.setGeometry(QtCore.QRect(40, 10, 261, 41))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.label.setFont(font)
@@ -45,7 +45,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "输入你要查询的编号 :"))
+        self.label.setText(_translate("Form", "输入你要查询的物业费的住房编号 :"))
         self.label_2.setText(_translate("Form", "查询所得 :"))
         self.ensure.setText(_translate("Form", "确定"))
         self.cancel.setText(_translate("Form", "取消"))

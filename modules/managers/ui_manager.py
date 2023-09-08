@@ -15,6 +15,9 @@ class core:
         pass
     @staticmethod
     def create_signup():
+        if global_vars.signinID is not None:
+            raise Exception("请先登出")
+
         if global_vars.window_list['signup'] is None:
             global_vars.window_list['signup'] = signup_use.signup()
         return global_vars.window_list['signup']
@@ -25,6 +28,9 @@ class core:
         return _error
     @staticmethod
     def create_signin():
+        if global_vars.signinID is not None:
+            raise Exception("你已经登陆了")
+
         if global_vars.window_list['signin'] is None:
             global_vars.window_list['signin'] = signin_use.signin()
         return global_vars.window_list['signin']
@@ -35,6 +41,9 @@ class core:
         return global_vars.window_list['queryfee']
     @staticmethod
     def create_selfinfo():
+        if global_vars.signinID is None:
+            raise Exception("请先登陆")
+        print("Able to create selfinfo")
         if global_vars.window_list['selfinfo'] is None:
             global_vars.window_list['selfinfo'] = selfinfo_use.selfinfo()
         return global_vars.window_list['selfinfo']

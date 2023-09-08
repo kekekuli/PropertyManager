@@ -27,6 +27,9 @@ class Ui_Form(object):
         self.test4 = QtWidgets.QPushButton(Form)
         self.test4.setGeometry(QtCore.QRect(40, 160, 100, 32))
         self.test4.setObjectName("test4")
+        self.logout = QtWidgets.QPushButton(Form)
+        self.logout.setGeometry(QtCore.QRect(40, 200, 100, 32))
+        self.logout.setObjectName("logout")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -34,7 +37,8 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.test1.setText(_translate("Form", "PushButton"))
-        self.test2.setText(_translate("Form", "PushButton"))
-        self.test3.setText(_translate("Form", "PushButton"))
-        self.test4.setText(_translate("Form", "PushButton"))
+        self.test1.setText(_translate("Form", "登陆"))
+        self.test2.setText(_translate("Form", "注册"))
+        self.test3.setText(_translate("Form", "查询物业费"))
+        self.test4.setText(_translate("Form", "更改信息"))
+        self.logout.setText(_translate("Form", "登出"))
