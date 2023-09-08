@@ -67,3 +67,8 @@ class mainwin(QMainWindow):
         self.childs.append(child)
     def accept_msg(self, house_id):
         manager.manager.login(house_id)
+    def close(self):
+        print("try to close mainwin")
+        super().close()
+        global_vars.window_list['mainwin'] = None
+        del self

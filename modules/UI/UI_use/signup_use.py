@@ -15,12 +15,12 @@ class signup(QMainWindow):
         self.ui.submit.clicked.connect(self.submit)
         return
     def submit(self):
+        # TODO add some statu tip to user
         datas = self.get_datas()
         flag = self.parse_data(datas)
         if flag == -1:
             return
         manager.manager.database_manager.add_household(datas)
-        return
     def add_Child(self, child):
         self.childs.append(child)
         return
@@ -76,3 +76,8 @@ class signup(QMainWindow):
 
         print(datas)
         return datas
+    def close(self):
+        print("try to close signup")
+        super().close()
+        global_vars.window_list['signup'] = None
+        del self

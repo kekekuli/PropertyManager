@@ -2,6 +2,7 @@
 from modules.UI.UI_resourse import selfinfoUI
 from PyQt5.QtWidgets import QMainWindow
 from modules.managers import manager
+from modules import global_vars
 class selfinfo(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -31,3 +32,8 @@ class selfinfo(QMainWindow):
         self.ui.gender.setCurrentText(datas['gender'])
         self.ui.profession.setCurrentText(datas['profession'])
         self.ui.population.setValue(datas['population'])
+    def close(self):
+        print('try to close selfinfo')
+        super().close()
+        global_vars.window_list['selfinfo'] = None
+        del self

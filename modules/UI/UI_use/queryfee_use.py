@@ -49,3 +49,8 @@ class queryfee(QMainWindow):
         return
     def addChild(self, child):
         self.childs.append(child)
+    def close(self):
+        print("try to close queryfee")
+        super().close()
+        global_vars.window_list['queryfee'] = None
+        del self

@@ -16,3 +16,6 @@ class error(QMainWindow):
         font = self.font()
         font.setPointSize(size)
         self.ui.message.setFont(font)
+    def close(self):
+        super().close()
+        del self

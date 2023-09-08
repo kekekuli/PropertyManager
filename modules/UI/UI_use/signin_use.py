@@ -51,3 +51,8 @@ class signin(QMainWindow):
     def addChild(self, child):
         self.childs.append(child)
         return
+    def close(self):
+        print("try to close signin")
+        super().close()
+        global_vars.window_list['signin'] = None
+        del self
