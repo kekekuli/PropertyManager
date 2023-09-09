@@ -20,57 +20,46 @@ class core:
         return global_vars.db
 
     @staticmethod
-    def add_household(datas):
+    def get_addHousehold_sql(datas):
         sql = """insert into `household`(
-                house_id, password, name, gender,
-                profession, start_time, area, population, phone) 
-                values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"""
-
+                        house_id, password, name, gender,
+                        profession, start_time, area, population, phone) 
+                        values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"""
         sql = sql % (datas['house_id'], datas['password'], datas['name'], datas['gender'],
-                  datas['profession'], datas['start_time'], datas['area'], datas['population'], datas['phone'])
-        print(sql)
+                     datas['profession'], datas['start_time'], datas['area'], datas['population'], datas['phone'])
+        return sql
+    @staticmethod
+    def get_getHousehold_sql(house_id):
+        sql = 'select * from household where house_id="{}"'.format(house_id)
+        return sql
+    @staticmethod
+    def get_signinAuth_sql(house_id, password):
+        sql = 'select * from household where house_id = "{}" and password = "{}"'.format(house_id, password)
+        return sql
+
+    @staticmethod
+    def get_queryFee_sql(house_id):
+        sql = 'select * from fees where house_id = "{}"'.format(house_id)
+        return sql
+
+    # return 0 if failed, other any value possible
+    @staticmethod
+    def execute_insert(sql):
         try:
             result = core.db.insert_one(sql)
+            return result
         except Exception as e:
-            print('error at insert data:' + str(e))
-    # return 0 if house_id not existed in database
+            print("Can not insert : " + str(e))
+            return 0
+    # return {} if failed
     @staticmethod
-    def get_household(house_id):
-        sql = 'select * from household where house_id="{}"'.format(house_id)
+    def execute_query(sql):
         try:
             result = core.db.fetchAll(sql)
             if len(result) == 0:
-                return None
+                return {}
             else:
                 return result[0]
         except Exception as e:
-            print('error at insert data:' + str(e))
-    @staticmethod
-    def signin_auth(house_id, password):
-        sql = 'select * from household where house_id = "{}" and password = "{}"'.format(house_id, password)
-        print(sql)
-        result = core.db.fetchAll(sql);
-        if len(result) == 0:
-            print("No user exist")
-        for item in result:
-            print(item)
-        return len(result)
-    @staticmethod
-    def add_message():
-        pass
-
-    @staticmethod
-    def add_fees():
-        pass
-
-    # 以字典形式返回一条物业费数据，不存在返回空
-    @staticmethod
-    def query_fee(house_id):
-        sql = 'select * from fees where house_id = "{}"'.format(house_id)
-        print(sql)
-        result = core.db.fetchAll(sql);
-        if len(result) == 0:
+            print("Can not query : " + str(e))
             return {}
-        else:
-            return result[0]
-

@@ -33,7 +33,7 @@ class signin(QMainWindow):
         return datas
     def submit(self):
         datas = self.get_datas()
-        result = manager.manager.database_manager.signin_auth(datas['house_id'], datas['password']);
+        result = manager.manager.account_manager.signin_auth(datas['house_id'], datas['password']);
         if result == 0:
             self.signinStatus.emit(-1)
             _error = manager.manager.ui_manager.create_error()

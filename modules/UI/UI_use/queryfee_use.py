@@ -17,7 +17,7 @@ class queryfee(QMainWindow):
     def submit(self):
         try:
             key = int(self.ui.house_id.text())
-            datas = manager.manager.database_manager.query_fee(key)
+            datas = manager.manager.fees_manager.query_fee(key)
             self.display_datas(datas)
         except ValueError as e:
             print("Through value error: " + str(e))

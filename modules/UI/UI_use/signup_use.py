@@ -20,7 +20,7 @@ class signup(QMainWindow):
         flag = self.parse_data(datas)
         if flag == -1:
             return
-        manager.manager.database_manager.add_household(datas)
+        manager.manager.account_manager.add_household(datas)
     def add_Child(self, child):
         self.childs.append(child)
         return

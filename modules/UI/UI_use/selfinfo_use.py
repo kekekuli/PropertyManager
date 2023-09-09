@@ -23,7 +23,7 @@ class selfinfo(QMainWindow):
     # read saved signin statu to change title
     def read_signin_statu(self):
         signinStatu = manager.manager.get_log_statu()
-        datas = manager.manager.database_manager.get_household(signinStatu)
+        datas = manager.manager.account_manager.get_household(signinStatu)
         msg = "尊敬的{}号住户业主{}，选择你要更改的信息".format(datas['house_id'], datas['name'])
         self.ui.canva.setText(msg)
         self.ui.name.setText(datas['name'])
