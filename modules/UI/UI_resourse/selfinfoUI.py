@@ -64,6 +64,7 @@ class Ui_Form(object):
         self.label_7.setObjectName("label_7")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_7)
         self.population = QtWidgets.QSpinBox(self.formLayoutWidget)
+        self.population.setMinimum(1)
         self.population.setObjectName("population")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.population)
         self.label = QtWidgets.QLabel(self.formLayoutWidget)

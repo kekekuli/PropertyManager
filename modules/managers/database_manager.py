@@ -41,7 +41,12 @@ class core:
     def get_queryFee_sql(house_id):
         sql = 'select * from fees where house_id = "{}"'.format(house_id)
         return sql
-
+    @staticmethod
+    def get_selfinfo_sql(datas):
+        sql = 'update household set name="{}", password="{}", phone="{}", gender="{}", profession="{}", population="{}"'
+        sql = sql.format(datas['name'], datas['password'], datas['phone'],
+                   datas['gender'], datas['profession'], datas['population'])
+        return sql
     # return 0 if failed, other any value possible
     @staticmethod
     def execute_insert(sql):
@@ -63,3 +68,12 @@ class core:
         except Exception as e:
             print("Can not query : " + str(e))
             return {}
+    # return 0 if failed, other any value possible
+    @staticmethod
+    def execute_update(sql):
+        try:
+            result = core.db.update(sql)
+            return result
+        except Exception as e:
+            print("Can not update : " + str(e))
+            return 0

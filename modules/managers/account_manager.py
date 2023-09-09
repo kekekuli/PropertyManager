@@ -28,3 +28,10 @@ class core:
         sql = dbm.get_signinAuth_sql(house_id, password)
         result = dbm.execute_query(sql)
         return bool(result)
+
+    @staticmethod
+    def update_selfinfo(datas):
+        dbm = manager.manager.database_manager
+        sql = dbm.get_selfinfo_sql(datas)
+        result = dbm.execute_update(sql)
+        return result

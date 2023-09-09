@@ -9,11 +9,14 @@ class error(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.ensure.clicked.connect(self.close)
+
+        # Default font size
+        self.set_size(16)
         return
     def set_message(self, str):
         self.ui.message.setText(str)
     def set_size(self, size):
-        font = self.font()
+        font = self.ui.message.font()
         font.setPointSize(size)
         self.ui.message.setFont(font)
     def close(self):

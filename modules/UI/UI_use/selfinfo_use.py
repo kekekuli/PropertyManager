@@ -17,7 +17,31 @@ class selfinfo(QMainWindow):
         self.read_signin_statu()
         return
     def submit(self):
-        pass
+        datas = self.get_datas()
+        flag = self.parse_datas(datas)
+        if flag != -1:
+            result = manager.manager.account_manager.update_selfinfo(datas)
+            # Success
+            if result != 0:
+                _error = manager.manager.ui_manager.create_error()
+                _error.set_size(10)
+                _error.set_message("修改成功，请重新登陆")
+                self.addChild(_error)
+                _error.show()
+
+                manager.manager.logout()
+                self.close()
+            # Failed
+            else:
+                _error = manager.manager.ui_manager.create_error()
+                _error.set_message("修改失败")
+                self.addChild(_error)
+                _error.show()
+        else:
+            _error = manager.manager.ui_manager.create_error()
+            _error.set_message("修改失败")
+            self.addChild(_error)
+            _error.show()
     def addChild(self, child):
         self.childs.append(child)
     # read saved signin statu to change title
@@ -32,6 +56,34 @@ class selfinfo(QMainWindow):
         self.ui.gender.setCurrentText(datas['gender'])
         self.ui.profession.setCurrentText(datas['profession'])
         self.ui.population.setValue(datas['population'])
+    def get_datas(self):
+        datas = {}
+        datas['name'] = self.ui.name.text()
+        datas['password'] = self.ui.password.text()
+        datas['phone'] = self.ui.phone.text()
+        datas['gender'] = self.ui.gender.currentText()
+        datas['profession'] = self.ui.profession.currentText()
+        datas['population'] = self.ui.population.value()
+        print(datas)
+        return datas
+    def parse_datas(self, datas):
+        try:
+            data = datas['phone']
+            for ch in data:
+                if ch < '0' or ch > '9':
+                    raise ValueError('非法字符')
+            datas['population'] = int(datas['population'])
+            if len(datas['name']) == 0 or len(datas['password']) == 0 or \
+                len(datas['gender']) == 0 or len(datas['profession']) == 0:
+                    raise ValueError("长度有误")
+            return 0
+        except ValueError as ve:
+            _error = manager.manager.ui_manager.create_error()
+            _error.set_message(str(ve))
+            self.addChild(_error)
+            _error.show()
+            return -1
+
     def close(self):
         print('try to close selfinfo')
         super().close()

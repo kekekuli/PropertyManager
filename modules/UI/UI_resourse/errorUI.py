@@ -24,7 +24,7 @@ class Ui_Form(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.message.sizePolicy().hasHeightForWidth())
         self.message.setSizePolicy(sizePolicy)
-        self.message.setStyleSheet("font: 16px;")
+        self.message.setStyleSheet("")
         self.message.setScaledContents(False)
         self.message.setAlignment(QtCore.Qt.AlignCenter)
         self.message.setObjectName("message")
