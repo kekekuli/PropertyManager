@@ -24,9 +24,9 @@ class core:
         return global_vars.window_list['signup']
 
     @staticmethod
-    def create_error():
+    def create_error(tip="Default", size=16):
         print('Create new error')
-        _error = error_use.error()
+        _error = error_use.error(msg=tip, fontSize=size)
         return _error
     @staticmethod
     def create_signin():

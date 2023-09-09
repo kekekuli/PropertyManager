@@ -26,8 +26,7 @@ class signin(QMainWindow):
         try:
             int(datas['house_id'])
         except ValueError as e:
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message("数值有误")
+            _error = manager.manager.ui_manager.create_error(tip="数值有误")
             self.addChild(_error)
             _error.show()
         return datas
@@ -36,14 +35,12 @@ class signin(QMainWindow):
         result = manager.manager.account_manager.signin_auth(datas['house_id'], datas['password']);
         if result == 0:
             self.signinStatus.emit(-1)
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message("登陆失败")
+            _error = manager.manager.ui_manager.create_error(tip="登陆失败")
             self.addChild(_error)
             _error.show()
         else:
             self.signinStatus.emit(int(datas['house_id']))
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message("登陆成功")
+            _error = manager.manager.ui_manager.create_error(tip="登陆成功")
             self.addChild(_error)
             _error.show()
             self.close()

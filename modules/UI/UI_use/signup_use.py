@@ -15,12 +15,22 @@ class signup(QMainWindow):
         self.ui.submit.clicked.connect(self.submit)
         return
     def submit(self):
-        # TODO add some statu tip to user
         datas = self.get_datas()
         flag = self.parse_data(datas)
         if flag == -1:
             return
-        manager.manager.account_manager.add_household(datas)
+        flag = manager.manager.account_manager.add_household(datas)
+        # Failed
+        if flag == -1:
+            _error = manager.manager.ui_manager.create_error(tip="注册失败")
+            self.add_Child(_error)
+            _error.show()
+        else:
+            _error = manager.manager.ui_manager.create_error(tip='注册成功')
+            self.add_Child(_error)
+            _error.show()
+
+            self.close()
     def add_Child(self, child):
         self.childs.append(child)
         return

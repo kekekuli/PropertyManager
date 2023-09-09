@@ -25,8 +25,7 @@ class mainwin(QMainWindow):
             signin.signinStatus.connect(self.accept_msg)
             signin.show()
         except Exception as e:
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message(str(e))
+            _error = manager.manager.ui_manager.create_error(tip=str(e))
             self.addChild(_error)
             _error.show()
     def show_signup(self):
@@ -35,8 +34,7 @@ class mainwin(QMainWindow):
             self.addChild(signup)
             signup.show()
         except Exception as e:
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message(str(e))
+            _error = manager.manager.ui_manager.create_error(tip=str(e))
             self.addChild(_error)
             _error.show()
     def show_queryfee(self):
@@ -49,11 +47,17 @@ class mainwin(QMainWindow):
             self.addChild(selfinfo)
             selfinfo.show()
         except Exception as e:
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message(str(e))
+            _error = manager.manager.ui_manager.create_error(tip=str(e))
             self.addChild(_error)
             _error.show()
     def show_logout(self):
+        # Check if already logout
+        if global_vars.signinID is None:
+            _error = manager.manager.ui_manager.create_error(tip="你已经登出了", size=12)
+            self.addChild(_error)
+            _error.show()
+            return
+
         manager.manager.logout()
         _error = manager.manager.ui_manager.create_error()
         self.addChild(_error)

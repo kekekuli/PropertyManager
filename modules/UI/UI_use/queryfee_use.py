@@ -21,8 +21,7 @@ class queryfee(QMainWindow):
             self.display_datas(datas)
         except ValueError as e:
             print("Through value error: " + str(e))
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message("数值有误")
+            _error = manager.manager.ui_manager.create_error("数值有误")
             self.addChild(_error)
             _error.show()
         return 0

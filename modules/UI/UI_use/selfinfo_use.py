@@ -23,9 +23,7 @@ class selfinfo(QMainWindow):
             result = manager.manager.account_manager.update_selfinfo(datas)
             # Success
             if result != 0:
-                _error = manager.manager.ui_manager.create_error()
-                _error.set_size(10)
-                _error.set_message("修改成功，请重新登陆")
+                _error = manager.manager.ui_manager.create_error(tip="修改成功，请重新登陆", size=10)
                 self.addChild(_error)
                 _error.show()
 
@@ -33,13 +31,11 @@ class selfinfo(QMainWindow):
                 self.close()
             # Failed
             else:
-                _error = manager.manager.ui_manager.create_error()
-                _error.set_message("修改失败")
+                _error = manager.manager.ui_manager.create_error(tip="修改失败")
                 self.addChild(_error)
                 _error.show()
         else:
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message("修改失败")
+            _error = manager.manager.ui_manager.create_error(tip="修改失败")
             self.addChild(_error)
             _error.show()
     def addChild(self, child):
@@ -78,8 +74,7 @@ class selfinfo(QMainWindow):
                     raise ValueError("长度有误")
             return 0
         except ValueError as ve:
-            _error = manager.manager.ui_manager.create_error()
-            _error.set_message(str(ve))
+            _error = manager.manager.ui_manager.create_error(tip=str(ve))
             self.addChild(_error)
             _error.show()
             return -1

@@ -2,7 +2,7 @@ from modules.UI.UI_resourse import errorUI
 from PyQt5.QtWidgets import QMainWindow
 
 class error(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, msg="Default", fontSize=16):
         super().__init__(parent)
         self.ui = errorUI.Ui_Form()
         self.setWindowTitle('error')
@@ -10,8 +10,8 @@ class error(QMainWindow):
 
         self.ui.ensure.clicked.connect(self.close)
 
-        # Default font size
-        self.set_size(16)
+        self.set_message(msg)
+        self.set_size(fontSize)
         return
     def set_message(self, str):
         self.ui.message.setText(str)
