@@ -6,7 +6,7 @@ import sys
 import pymysql
 from modules import global_vars, database
 from modules.UI.UI_use import signup_use, error_use, signin_use,\
-    queryfee_use, mainwin_use, selfinfo_use
+    queryfee_use, mainwin_use, selfinfo_use, addmsg_use
 from PyQt5.QtWidgets import QApplication
 
 class core:
@@ -57,3 +57,11 @@ class core:
             print("Create new mainwin")
             global_vars.window_list['mainwin'] = mainwin_use.mainwin()
         return global_vars.window_list['mainwin']
+    @staticmethod
+    def create_addmsg():
+        if global_vars.signinID is None:
+            raise Exception("请先登陆")
+        if global_vars.window_list['addmsg'] is None:
+            print("Create new addmsg")
+            global_vars.window_list['addmsg'] = addmsg_use.addmsg()
+        return global_vars.window_list['addmsg']

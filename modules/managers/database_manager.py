@@ -1,7 +1,7 @@
 # used for manage database
 from modules import global_vars
 from modules.database import database
-
+from datetime import datetime
 
 class core:
     @staticmethod
@@ -43,9 +43,27 @@ class core:
         return sql
     @staticmethod
     def get_selfinfo_sql(datas):
-        sql = 'update household set name="{}", password="{}", phone="{}", gender="{}", profession="{}", population="{}"'
+        sql = """update household 
+                set name='{}', password='{}', phone='{}', 
+                gender='{}', profession='{}', population='{}' 
+                where house_id='{}'
+        """
         sql = sql.format(datas['name'], datas['password'], datas['phone'],
-                   datas['gender'], datas['profession'], datas['population'])
+                   datas['gender'], datas['profession'], datas['population'], global_vars.signinID)
+        return sql
+    @staticmethod
+    def get_addmsg_sql(msg):
+        full_date = datetime.now()
+        time = "{}-{}-{}".format(full_date.year, full_date.month, full_date.day)
+
+        name_sql = core.get_getHousehold_sql(global_vars.signinID)
+        datas = core.execute_query(name_sql)
+        name = datas['name']
+
+        sql = 'insert into message(name, msg, time) values ("{}", "{}", "{}")'
+        sql = sql.format(name, msg, time)
+
+        print(sql)
         return sql
     # return 0 if failed, other any value possible
     @staticmethod

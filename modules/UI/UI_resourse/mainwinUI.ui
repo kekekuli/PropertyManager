@@ -78,6 +78,19 @@
     <string>登出</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="addmsg">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>30</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>提交留言</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

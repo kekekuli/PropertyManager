@@ -30,6 +30,9 @@ class Ui_Form(object):
         self.logout = QtWidgets.QPushButton(Form)
         self.logout.setGeometry(QtCore.QRect(40, 200, 100, 32))
         self.logout.setObjectName("logout")
+        self.addmsg = QtWidgets.QPushButton(Form)
+        self.addmsg.setGeometry(QtCore.QRect(160, 30, 100, 32))
+        self.addmsg.setObjectName("addmsg")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -42,3 +45,4 @@ class Ui_Form(object):
         self.test3.setText(_translate("Form", "查询物业费"))
         self.test4.setText(_translate("Form", "更改信息"))
         self.logout.setText(_translate("Form", "登出"))
+        self.addmsg.setText(_translate("Form", "提交留言"))

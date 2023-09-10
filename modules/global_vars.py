@@ -5,5 +5,5 @@ window_list = {'signup': None,
                'queryfee': None,
                'selfinfo': None,
                'mainwin' : None,
-               }
+               'addmsg': None}
 signinID = None
