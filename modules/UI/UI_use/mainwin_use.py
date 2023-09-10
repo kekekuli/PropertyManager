@@ -18,6 +18,7 @@ class mainwin(QMainWindow):
         self.ui.test4.clicked.connect(self.show_selfinfo)
         self.ui.logout.clicked.connect(self.show_logout)
         self.ui.addmsg.clicked.connect(self.show_addmsg)
+        self.ui.showmsg.clicked.connect(self.show_showmsg)
     def show_signin(self):
         try:
             signin = manager.manager.ui_manager.create_signin()
@@ -72,6 +73,16 @@ class mainwin(QMainWindow):
             addmsg = mmu.create_addmsg()
             self.addChild(addmsg)
             addmsg.show()
+        except Exception as e:
+            _error = mmu.create_error(tip=str(e))
+            self.addChild(_error)
+            _error.show()
+    def show_showmsg(self):
+        mmu = manager.manager.ui_manager
+        try:
+            showmsg = mmu.create_showmsg()
+            self.addChild(showmsg)
+            showmsg.show()
         except Exception as e:
             _error = mmu.create_error(tip=str(e))
             self.addChild(_error)

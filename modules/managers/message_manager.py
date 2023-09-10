@@ -11,3 +11,16 @@ class core:
         sql = mmd.get_addmsg_sql(msg)
         result = mmd.execute_insert(sql)
         return result
+
+    @staticmethod
+    def read_msg():
+        mmd = manager.manager.database_manager
+        sql = mmd.get_readMsg_sql()
+        result = mmd.execute_query(sql, statu="mul")
+        return result
+    @staticmethod
+    def del_msg(id):
+        mmd = manager.manager.database_manager
+        sql = mmd.get_delMsg_sql(id)
+        result = mmd.execute_del(sql)
+        return result

@@ -63,7 +63,14 @@ class core:
         sql = 'insert into message(name, msg, time) values ("{}", "{}", "{}")'
         sql = sql.format(name, msg, time)
 
-        print(sql)
+        return sql
+    @staticmethod
+    def get_readMsg_sql():
+        sql = 'select * from message'
+        return sql
+    @staticmethod
+    def get_delMsg_sql(id):
+        sql = 'delete from message where id="{}"'.format(id)
         return sql
     # return 0 if failed, other any value possible
     @staticmethod
@@ -74,15 +81,18 @@ class core:
         except Exception as e:
             print("Can not insert : " + str(e))
             return 0
-    # return {} if failed
+    # return {} if failed, statu decide return one or more
     @staticmethod
-    def execute_query(sql):
+    def execute_query(sql, statu="one"):
         try:
             result = core.db.fetchAll(sql)
             if len(result) == 0:
                 return {}
             else:
-                return result[0]
+                if statu == "mul":
+                    return result
+                else:
+                    return result[0]
         except Exception as e:
             print("Can not query : " + str(e))
             return {}
@@ -93,5 +103,8 @@ class core:
             result = core.db.update(sql)
             return result
         except Exception as e:
-            print("Can not update : " + str(e))
+            print("Can not update/delete : " + str(e))
             return 0
+    @staticmethod
+    def execute_del(sql):
+        return core.execute_update(sql)

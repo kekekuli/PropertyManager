@@ -91,6 +91,19 @@
     <string>提交留言</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="showmsg">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>80</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>查看留言</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
