@@ -19,6 +19,8 @@ class addmsg(QMainWindow):
         super().close()
         global_vars.window_list['addmsg'] = None
         del self
+    def closeEvent(self, event):
+        self.close()
     def submit(self):
         data = self.get_data()
         flag = self.parse_data(data)

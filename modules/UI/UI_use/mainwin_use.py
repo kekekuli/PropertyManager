@@ -96,3 +96,5 @@ class mainwin(QMainWindow):
         super().close()
         global_vars.window_list['mainwin'] = None
         del self
+    def closeEvent(self, event):
+        self.close()

@@ -53,3 +53,5 @@ class queryfee(QMainWindow):
         super().close()
         global_vars.window_list['queryfee'] = None
         del self
+    def closeEvent(self, event):
+        self.close()

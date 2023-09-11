@@ -22,3 +22,5 @@ class error(QMainWindow):
     def close(self):
         super().close()
         del self
+    def closeEvent(self, event):
+        self.close()

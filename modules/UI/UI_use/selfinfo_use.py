@@ -84,3 +84,5 @@ class selfinfo(QMainWindow):
         super().close()
         global_vars.window_list['selfinfo'] = None
         del self
+    def closeEvent(self, event):
+        self.close()

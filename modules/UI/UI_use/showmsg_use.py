@@ -85,6 +85,8 @@ class showmsg(QtWidgets.QWidget):
         del self
     def addChild(self, child):
         self.childs.append(child)
+    def closeEvent(self, event):
+        self.close()
 if __name__ == '__main__':
     manager.manager.setup()
     app = QtWidgets.QApplication(sys.argv)

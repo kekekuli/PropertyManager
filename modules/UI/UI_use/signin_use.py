@@ -53,3 +53,5 @@ class signin(QMainWindow):
         super().close()
         global_vars.window_list['signin'] = None
         del self
+    def closeEvent(self, event):
+        self.close()
