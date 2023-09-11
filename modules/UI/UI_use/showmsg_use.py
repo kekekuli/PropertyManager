@@ -69,7 +69,6 @@ class showmsg(QtWidgets.QWidget):
 
             # must save id as myid in myButton function
             # because id value is vary, need a place to hold
-            # TODO---limit common user can not use delete button
             def myButton():
                 button = QtWidgets.QPushButton()
                 button.setText("删除")
@@ -77,7 +76,8 @@ class showmsg(QtWidgets.QWidget):
                 button.setFixedSize(50, 30)
                 button.clicked.connect(lambda : self.delStatus.emit(myid))
                 return button
-            layout.addWidget(myButton())
+            if global_vars.signinType == global_vars.admin:
+                layout.addWidget(myButton())
 
             self.top_layout.addWidget(group_box)
     def del_msg(self, id):
