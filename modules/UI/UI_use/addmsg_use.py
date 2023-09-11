@@ -22,14 +22,15 @@ class addmsg(QMainWindow):
     def closeEvent(self, event):
         self.close()
     def submit(self):
-        data = self.get_data()
-        flag = self.parse_data(data)
+        _msg = self.get_msg()
+        _complain = self.get_complain()
+        flag = self.parse_data(_msg)
 
         _error = manager.manager.ui_manager.create_error()
 
         # success in parse data
         if flag == 0:
-            result = manager.manager.message_manager.add_msg(data)
+            result = manager.manager.message_manager.add_msg(msg=_msg, complain=_complain)
             # success in add data to dabase
             if result != 0:
                 _error.set_message("评论成功")
@@ -42,8 +43,10 @@ class addmsg(QMainWindow):
         self.addChild(_error)
         _error.show()
 
-    def get_data(self):
+    def get_msg(self):
         return self.ui.msg.toPlainText()
+    def get_complain(self):
+        return self.ui.complain.isChecked()
     def parse_data(self, data):
         try:
             if len(data) == 0 or len(data) > 50:

@@ -7,4 +7,8 @@ window_list = {'signup': None,
                'mainwin' : None,
                'addmsg': None,
                'showmsg': None}
+
+admin = 'admin'
+user = 'user'
 signinID = None
+signinType = None

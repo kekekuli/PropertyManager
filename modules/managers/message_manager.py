@@ -6,16 +6,16 @@ class core:
         print('message_manager loading...')
     # success return 0, failed return -1
     @staticmethod
-    def add_msg(msg):
+    def add_msg(msg, complain=False):
         mmd = manager.manager.database_manager
-        sql = mmd.get_addmsg_sql(msg)
+        sql = mmd.get_addmsg_sql(msg, complain)
         result = mmd.execute_insert(sql)
         return result
 
     @staticmethod
-    def read_msg():
+    def read_msg(complain=False):
         mmd = manager.manager.database_manager
-        sql = mmd.get_readMsg_sql()
+        sql = mmd.get_readMsg_sql(complain)
         result = mmd.execute_query(sql, statu="mul")
         return result
     @staticmethod

@@ -52,7 +52,7 @@ class core:
                    datas['gender'], datas['profession'], datas['population'], global_vars.signinID)
         return sql
     @staticmethod
-    def get_addmsg_sql(msg):
+    def get_addmsg_sql(msg, complain):
         full_date = datetime.now()
         time = "{}-{}-{}".format(full_date.year, full_date.month, full_date.day)
 
@@ -60,13 +60,17 @@ class core:
         datas = core.execute_query(name_sql)
         name = datas['name']
 
-        sql = 'insert into message(name, msg, time) values ("{}", "{}", "{}")'
-        sql = sql.format(name, msg, time)
+        sql = 'insert into message(name, msg, time, complain) values ("{}", "{}", "{}", {})'
+        sql = sql.format(name, msg, time, complain)
 
         return sql
     @staticmethod
-    def get_readMsg_sql():
-        sql = 'select * from message'
+    def get_readMsg_sql(complain):
+        sql = ""
+        if complain is True:
+            sql = 'select * from message where complain={}'.format(complain)
+        else:
+            sql = 'select * from message'
         return sql
     @staticmethod
     def get_delMsg_sql(id):

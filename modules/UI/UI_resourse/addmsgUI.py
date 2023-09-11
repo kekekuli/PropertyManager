@@ -14,16 +14,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(416, 165)
+        Form.resize(416, 183)
         self.msg = QtWidgets.QTextEdit(Form)
-        self.msg.setGeometry(QtCore.QRect(40, 40, 331, 74))
+        self.msg.setGeometry(QtCore.QRect(40, 30, 331, 74))
         self.msg.setObjectName("msg")
         self.ensure = QtWidgets.QPushButton(Form)
-        self.ensure.setGeometry(QtCore.QRect(299, 130, 71, 32))
+        self.ensure.setGeometry(QtCore.QRect(300, 140, 71, 32))
         self.ensure.setObjectName("ensure")
         self.cancel = QtWidgets.QPushButton(Form)
-        self.cancel.setGeometry(QtCore.QRect(210, 130, 71, 32))
+        self.cancel.setGeometry(QtCore.QRect(210, 140, 71, 32))
         self.cancel.setObjectName("cancel")
+        self.complain = QtWidgets.QCheckBox(Form)
+        self.complain.setGeometry(QtCore.QRect(320, 110, 51, 20))
+        self.complain.setObjectName("complain")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -34,3 +37,4 @@ class Ui_Form(object):
         self.msg.setPlaceholderText(_translate("Form", "在这里输入你的留言"))
         self.ensure.setText(_translate("Form", "提交"))
         self.cancel.setText(_translate("Form", "取消"))
+        self.complain.setText(_translate("Form", "投诉"))

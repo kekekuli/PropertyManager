@@ -7,24 +7,43 @@ import sys
 class showmsg(QtWidgets.QWidget):
     delStatus = QtCore.pyqtSignal(int)
     def __init__(self, parent=None):
-        msgm = manager.manager.message_manager
-        self.childs = []
-
         super().__init__(parent)
+
+        self.childs = []
+        self.complainChecked = False
+
         self.lay = QtWidgets.QVBoxLayout(self)
+        self.refresh()
+
+        self.delStatus.connect(self.del_msg)
+
+    def refresh(self):
+        msgm = manager.manager.message_manager
+
+        # check https://stackoverflow.com/questions/4528347/clear-all-widgets-in-a-layout-in-pyqt
+        for i in reversed(range(self.lay.count())):
+            self.lay.itemAt(i).widget().setParent(None)
+
+        # Chechbox for is only show complain message
+        self.complain = QtWidgets.QCheckBox()
+        self.complain.setText("只显示投诉")
+        self.complain.setChecked(self.complainChecked)
+        self.complain.clicked.connect(self.change_complain_checked)
+
+        self.lay.addWidget(self.complain)
 
         self.scrollArea = QtWidgets.QScrollArea()
         self.lay.addWidget(self.scrollArea)
         self.top_widget = QtWidgets.QWidget()
         self.top_layout = QtWidgets.QVBoxLayout()
 
-        self.set_ui(msgm.read_msg())
+        datas = msgm.read_msg(self.complainChecked)
+        self.set_ui(datas)
 
         self.top_widget.setLayout(self.top_layout)
         self.scrollArea.setWidget(self.top_widget)
         self.resize(300, 400)
 
-        self.delStatus.connect(self.del_msg)
     def set_ui(self, datas):
         i = 1
         for item in datas:
@@ -50,6 +69,7 @@ class showmsg(QtWidgets.QWidget):
 
             # must save id as myid in myButton function
             # because id value is vary, need a place to hold
+            # TODO---limit common user can not use delete button
             def myButton():
                 button = QtWidgets.QPushButton()
                 button.setText("删除")
@@ -62,7 +82,6 @@ class showmsg(QtWidgets.QWidget):
             self.top_layout.addWidget(group_box)
     def del_msg(self, id):
         result = manager.manager.message_manager.del_msg(id)
-        self.close()
 
         _error = manager.manager.ui_manager.create_error()
         self.addChild(_error)
@@ -73,11 +92,15 @@ class showmsg(QtWidgets.QWidget):
             _error.set_message("删除成功，正在刷新留言信息表")
             _error.set_size(10)
 
-            self.close()
             result = manager.manager.ui_manager.create_showmsg()
             result.show()
 
+            self.refresh()
+
         _error.show()
+
+        self.refresh()
+
     def close(self):
         print("try to close showmsg...")
         super().close()
@@ -87,6 +110,12 @@ class showmsg(QtWidgets.QWidget):
         self.childs.append(child)
     def closeEvent(self, event):
         self.close()
+    def change_complain_checked(self):
+        if self.complainChecked is False:
+            self.complainChecked = True
+        else:
+            self.complainChecked = False
+        self.refresh()
 if __name__ == '__main__':
     manager.manager.setup()
     app = QtWidgets.QApplication(sys.argv)

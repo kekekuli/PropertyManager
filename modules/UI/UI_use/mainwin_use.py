@@ -84,6 +84,7 @@ class mainwin(QMainWindow):
             self.addChild(showmsg)
             showmsg.show()
         except Exception as e:
+            print(str(e))
             _error = mmu.create_error(tip=str(e))
             self.addChild(_error)
             _error.show()
