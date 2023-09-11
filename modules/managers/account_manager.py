@@ -23,9 +23,9 @@ class core:
         result = dbm.execute_query(sql)
         return result
     @staticmethod
-    def signin_auth(house_id, password):
+    def signin_auth(house_id, password, signType):
         dbm = manager.manager.database_manager
-        sql = dbm.get_signinAuth_sql(house_id, password)
+        sql = dbm.get_signinAuth_sql(house_id, password, signType)
         result = dbm.execute_query(sql)
         return bool(result)
 

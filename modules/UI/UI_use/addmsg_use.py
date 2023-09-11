@@ -1,10 +1,10 @@
 # used for add new message to database
 from modules.UI.UI_resourse import addmsgUI
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QWidget
 from modules.managers import manager
 from modules import global_vars
 
-class addmsg(QMainWindow):
+class addmsg(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = addmsgUI.Ui_Form()
@@ -14,6 +14,8 @@ class addmsg(QMainWindow):
 
         self.ui.ensure.clicked.connect(self.submit)
         self.ui.cancel.clicked.connect(self.close)
+
+        self.setFixedSize(400, 300)
     def close(self):
         print("try to close addmsg...")
         super().close()

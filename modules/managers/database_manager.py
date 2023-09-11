@@ -33,8 +33,14 @@ class core:
         sql = 'select * from household where house_id="{}"'.format(house_id)
         return sql
     @staticmethod
-    def get_signinAuth_sql(house_id, password):
-        sql = 'select * from household where house_id = "{}" and password = "{}"'.format(house_id, password)
+    def get_signinAuth_sql(house_id, password, signType):
+        sql = ""
+        if signType == global_vars.user:
+            sql = 'select * from household where house_id = "{}" and password = "{}"'.format(house_id, password)
+        elif signType == global_vars.admin:
+            sql = 'select * from admins where id = "{}" and password = "{}"'.format(house_id, password)
+        else:
+            raise Exception("不能正确处理登陆角色")
         return sql
 
     @staticmethod

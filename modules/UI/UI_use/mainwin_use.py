@@ -1,10 +1,10 @@
 # A main window used for test communicate between windows
 from modules.UI.UI_resourse import mainwinUI
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QWidget
 from modules.managers import manager
 from modules import global_vars
 
-class mainwin(QMainWindow):
+class mainwin(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = mainwinUI.Ui_Form()
@@ -23,7 +23,7 @@ class mainwin(QMainWindow):
         try:
             signin = manager.manager.ui_manager.create_signin()
             self.addChild(signin)
-            signin.signinStatus.connect(self.accept_msg)
+            signin.signStatus.connect(self.accept_msg)
             signin.show()
         except Exception as e:
             _error = manager.manager.ui_manager.create_error(tip=str(e))
@@ -90,8 +90,8 @@ class mainwin(QMainWindow):
             _error.show()
     def addChild(self, child):
         self.childs.append(child)
-    def accept_msg(self, house_id):
-        manager.manager.login(house_id)
+    def accept_msg(self, house_id, userType):
+        manager.manager.login(house_id, userType)
     def close(self):
         print("try to close mainwin")
         super().close()

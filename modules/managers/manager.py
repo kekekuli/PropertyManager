@@ -30,11 +30,14 @@ class manager:
     def wait_for_end():
         sys.exit(global_vars.app.exec())
     @staticmethod
-    def login(house_id):
+    def login(house_id, userType):
         global_vars.signinID = house_id
+        global_vars.signinType = userType
+
     @staticmethod
     def logout():
         global_vars.signinID = None
+        global_vars.signinType = None
     @staticmethod
-    def get_log_statu():
+    def get_signinID():
         return global_vars.signinID

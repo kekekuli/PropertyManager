@@ -1,9 +1,9 @@
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QWidget
 from modules import global_vars
 from modules.UI.UI_resourse import signupUI
 from modules.managers import manager
 
-class signup(QMainWindow):
+class signup(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = signupUI.Ui_MainWindow()

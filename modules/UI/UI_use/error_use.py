@@ -1,7 +1,7 @@
 from modules.UI.UI_resourse import errorUI
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QWidget
 
-class error(QMainWindow):
+class error(QWidget):
     def __init__(self, parent=None, msg="Default", fontSize=16):
         super().__init__(parent)
         self.ui = errorUI.Ui_Form()

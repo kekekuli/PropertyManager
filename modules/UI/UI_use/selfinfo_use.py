@@ -1,9 +1,9 @@
 # used for change self infomatino
 from modules.UI.UI_resourse import selfinfoUI
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QWidget
 from modules.managers import manager
 from modules import global_vars
-class selfinfo(QMainWindow):
+class selfinfo(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = selfinfoUI.Ui_Form()
@@ -42,8 +42,8 @@ class selfinfo(QMainWindow):
         self.childs.append(child)
     # read saved signin statu to change title
     def read_signin_statu(self):
-        signinStatu = manager.manager.get_log_statu()
-        datas = manager.manager.account_manager.get_household(signinStatu)
+        signinID = manager.manager.get_signinID()
+        datas = manager.manager.account_manager.get_household(signinID)
         msg = "尊敬的{}号住户业主{}，选择你要更改的信息".format(datas['house_id'], datas['name'])
         self.ui.canva.setText(msg)
         self.ui.name.setText(datas['name'])

@@ -1,9 +1,9 @@
 from modules.UI.UI_resourse import queryfeeUI
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QWidget
 from modules import global_vars
 from modules.managers import manager
 
-class queryfee(QMainWindow):
+class queryfee(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = queryfeeUI.Ui_Form()
