@@ -114,7 +114,10 @@ class core:
     def get_delMan_sql(id):
         sql = 'delete from household where house_id="{}"'.format(id);
         return sql
-
+    @staticmethod
+    def get_queryAdmin_sql(id):
+        sql = 'select * from admins where id="{}"'.format(id)
+        return sql
     # return 0 if failed, other any value possible
     @staticmethod
     def execute_insert(sql):

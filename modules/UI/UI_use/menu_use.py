@@ -121,8 +121,14 @@ class menu(QWidget):
             datas['id'] = global_vars.signinID
             datas['type'] = global_vars.signinType
 
-            household = manager.manager.account_manager.get_household(datas['id'])
-            datas['name'] = household['name']
+            if global_vars.signinType == global_vars.user:
+                household = manager.manager.account_manager.get_household(datas['id'])
+                datas['name'] = household['name']
+            elif global_vars.signinType == global_vars.admin:
+                admin = manager.manager.account_manager.query_admin(datas['id'])
+                datas['name'] = admin['name']
+            else:
+                datas['name'] = '未知'
 
         return datas
     # The sec title

@@ -49,7 +49,13 @@ class core:
         manager.manager.fees_manager.del_fee(id)
 
         sql = dbm.get_delMan_sql(id)
-        print(sql)
         result = dbm.execute_del(sql)
+        return result
+    @staticmethod
+    def query_admin(id):
+        dbm = manager.manager.database_manager
+        sql = dbm.get_queryAdmin_sql(id)
+        result = dbm.execute_query(sql)
+        print(result)
         return result
 
