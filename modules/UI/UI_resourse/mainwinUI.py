@@ -36,6 +36,12 @@ class Ui_Form(object):
         self.showmsg = QtWidgets.QPushButton(Form)
         self.showmsg.setGeometry(QtCore.QRect(160, 80, 100, 32))
         self.showmsg.setObjectName("showmsg")
+        self.alterfee = QtWidgets.QPushButton(Form)
+        self.alterfee.setGeometry(QtCore.QRect(160, 120, 100, 32))
+        self.alterfee.setObjectName("alterfee")
+        self.addfee = QtWidgets.QPushButton(Form)
+        self.addfee.setGeometry(QtCore.QRect(160, 160, 100, 32))
+        self.addfee.setObjectName("addfee")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -50,3 +56,5 @@ class Ui_Form(object):
         self.logout.setText(_translate("Form", "登出"))
         self.addmsg.setText(_translate("Form", "提交留言"))
         self.showmsg.setText(_translate("Form", "查看留言"))
+        self.alterfee.setText(_translate("Form", "修改物业费"))
+        self.addfee.setText(_translate("Form", "添加物业费"))

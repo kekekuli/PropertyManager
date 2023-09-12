@@ -6,7 +6,8 @@ window_list = {'signup': None,
                'selfinfo': None,
                'mainwin' : None,
                'addmsg': None,
-               'showmsg': None}
+               'showmsg': None,
+               'alterfee': None}
 
 admin = 'admin'
 user = 'user'

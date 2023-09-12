@@ -19,6 +19,7 @@ class mainwin(QWidget):
         self.ui.logout.clicked.connect(self.show_logout)
         self.ui.addmsg.clicked.connect(self.show_addmsg)
         self.ui.showmsg.clicked.connect(self.show_showmsg)
+        self.ui.alterfee.clicked.connect(self.show_alterfee)
     def show_signin(self):
         try:
             signin = manager.manager.ui_manager.create_signin()
@@ -26,6 +27,7 @@ class mainwin(QWidget):
             signin.signStatus.connect(self.accept_msg)
             signin.show()
         except Exception as e:
+            print(e)
             _error = manager.manager.ui_manager.create_error(tip=str(e))
             self.addChild(_error)
             _error.show()
@@ -35,6 +37,7 @@ class mainwin(QWidget):
             self.addChild(signup)
             signup.show()
         except Exception as e:
+            print(e)
             _error = manager.manager.ui_manager.create_error(tip=str(e))
             self.addChild(_error)
             _error.show()
@@ -48,6 +51,7 @@ class mainwin(QWidget):
             self.addChild(selfinfo)
             selfinfo.show()
         except Exception as e:
+            print(e)
             _error = manager.manager.ui_manager.create_error(tip=str(e))
             self.addChild(_error)
             _error.show()
@@ -74,6 +78,7 @@ class mainwin(QWidget):
             self.addChild(addmsg)
             addmsg.show()
         except Exception as e:
+            print(e)
             _error = mmu.create_error(tip=str(e))
             self.addChild(_error)
             _error.show()
@@ -84,8 +89,19 @@ class mainwin(QWidget):
             self.addChild(showmsg)
             showmsg.show()
         except Exception as e:
-            print(str(e))
+            print(e)
             _error = mmu.create_error(tip=str(e))
+            self.addChild(_error)
+            _error.show()
+    def show_alterfee(self):
+        mmu = manager.manager.ui_manager
+        try:
+            alterfee = mmu.create_alterfee()
+            self.addChild(alterfee)
+            alterfee.show()
+        except Exception as e:
+            print(e)
+            _error = mmu.create_error(tip="失败")
             self.addChild(_error)
             _error.show()
     def addChild(self, child):

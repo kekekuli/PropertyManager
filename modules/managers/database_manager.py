@@ -82,6 +82,31 @@ class core:
     def get_delMsg_sql(id):
         sql = 'delete from message where id="{}"'.format(id)
         return sql
+    @staticmethod
+    def get_addFee_sql(datas):
+        sql = """ insert into fees(house_id, property_fee, park_fee, other_fee, paid, charge_time)
+                values ('%s', '%s', '%s', '%s', '%s', '%s')"""
+        sql = sql % (datas['house_id'], datas['property_fee'], datas['park_fee'],
+                         datas['other_fee'], datas['paid'], str(datas['charge_time']))
+        print("debug")
+        print(sql)
+        return sql
+    @staticmethod
+    def get_delFee_sql(id):
+        sql = 'delete from fees where house_id="{}"'.format(id)
+        return sql
+    @staticmethod
+    def get_changeFee_sql(datas):
+        sql = """ update fees
+                set charge_time='{}', paid='{}', property_fee='{}',
+                park_fee='{}', other_fee='{}'    
+                where house_id='{}'
+        """
+
+        sql = sql.format(datas['charge_time'], datas['paid'], datas['property_fee'],
+                         datas['park_fee'], datas['other_fee'], datas['house_id'])
+        return sql
+
     # return 0 if failed, other any value possible
     @staticmethod
     def execute_insert(sql):

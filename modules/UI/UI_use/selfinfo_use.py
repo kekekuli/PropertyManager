@@ -10,11 +10,13 @@ class selfinfo(QWidget):
         self.setWindowTitle("self info change")
         self.ui.setupUi(self)
         self.childs = []
+        self.signinID = manager.manager.get_signinID()
 
         self.ui.cancel.clicked.connect(self.close)
         self.ui.ensure.clicked.connect(self.submit)
 
         self.read_signin_statu()
+        self.disenable_title()
         return
     def submit(self):
         datas = self.get_datas()
@@ -23,12 +25,11 @@ class selfinfo(QWidget):
             result = manager.manager.account_manager.update_selfinfo(datas)
             # Success
             if result != 0:
-                _error = manager.manager.ui_manager.create_error(tip="修改成功，请重新登陆", size=10)
+                _error = manager.manager.ui_manager.create_error(tip="修改成功")
                 self.addChild(_error)
                 _error.show()
 
-                manager.manager.logout()
-                self.close()
+                self.read_signin_statu()
             # Failed
             else:
                 _error = manager.manager.ui_manager.create_error(tip="修改失败")
@@ -42,7 +43,7 @@ class selfinfo(QWidget):
         self.childs.append(child)
     # read saved signin statu to change title
     def read_signin_statu(self):
-        signinID = manager.manager.get_signinID()
+        signinID = self.signinID
         datas = manager.manager.account_manager.get_household(signinID)
         msg = "尊敬的{}号住户业主{}，选择你要更改的信息".format(datas['house_id'], datas['name'])
         self.ui.canva.setText(msg)
@@ -86,3 +87,7 @@ class selfinfo(QWidget):
         del self
     def closeEvent(self, event):
         self.close()
+    def disenable_title(self):
+        self.ui.canva.deleteLater()
+    def set_signinID(self, id):
+        self.signinID = id

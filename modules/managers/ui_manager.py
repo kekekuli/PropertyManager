@@ -6,7 +6,8 @@ import sys
 import pymysql
 from modules import global_vars, database
 from modules.UI.UI_use import signup_use, error_use, signin_use,\
-    queryfee_use, mainwin_use, selfinfo_use, addmsg_use, showmsg_use
+    queryfee_use, mainwin_use, selfinfo_use, addmsg_use, showmsg_use,\
+    alterfee_use
 from PyQt5.QtWidgets import QApplication
 
 class core:
@@ -71,3 +72,9 @@ class core:
             print("Create new showmsg")
             global_vars.window_list['showmsg'] = showmsg_use.showmsg()
         return global_vars.window_list['showmsg']
+    @staticmethod
+    def create_alterfee():
+        if global_vars.window_list['alterfee'] is None:
+            print("Create new alterfee")
+            global_vars.window_list['alterfee'] = alterfee_use.alterfee()
+        return global_vars.window_list['alterfee']
