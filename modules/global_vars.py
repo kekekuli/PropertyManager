@@ -8,7 +8,8 @@ window_list = {'signup': None,
                'addmsg': None,
                'showmsg': None,
                'alterfee': None,
-               'menu': None}
+               'menu': None,
+               'showman': None}
 
 admin = 'admin'
 user = 'user'

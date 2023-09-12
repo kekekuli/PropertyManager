@@ -24,7 +24,7 @@ class menu(QWidget):
         self.top_layout.setAlignment(Qt.AlignTop | Qt.AlignCenter)
 
         self.top_layout.title = QLabel()
-        self.top_layout.title.setText("物业管理系统---V1.0")
+        self.top_layout.title.setText("物业管理系统---V1.1")
         # self.top_layout.title.setStyleSheet("background-color: #e0e6e2")
         self.top_layout.title.setFixedSize(300, 30)
         self.top_layout.addWidget(self.top_layout.title)

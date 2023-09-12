@@ -4,40 +4,32 @@ from modules.managers import manager
 from modules import global_vars
 import sys
 
-class showmsg(QtWidgets.QWidget):
+class showman(QtWidgets.QWidget):
     delStatus = QtCore.pyqtSignal(int)
     def __init__(self, parent=None):
         super().__init__(parent)
 
         self.childs = []
-        self.complainChecked = False
 
         self.lay = QtWidgets.QVBoxLayout(self)
         self.refresh()
 
-        self.delStatus.connect(self.del_msg)
+        self.delStatus.connect(self.del_man)
 
     def refresh(self):
-        msgm = manager.manager.message_manager
+        mma = manager.manager.account_manager
 
         # check https://stackoverflow.com/questions/4528347/clear-all-widgets-in-a-layout-in-pyqt
         for i in reversed(range(self.lay.count())):
             self.lay.itemAt(i).widget().setParent(None)
 
-        # Chechbox for is only show complain message
-        self.complain = QtWidgets.QCheckBox()
-        self.complain.setText("只显示投诉")
-        self.complain.setChecked(self.complainChecked)
-        self.complain.clicked.connect(self.change_complain_checked)
-
-        self.lay.addWidget(self.complain)
 
         self.scrollArea = QtWidgets.QScrollArea()
         self.lay.addWidget(self.scrollArea)
         self.top_widget = QtWidgets.QWidget()
         self.top_layout = QtWidgets.QVBoxLayout()
 
-        datas = msgm.read_msg(self.complainChecked)
+        datas = mma.all_households()
         self.set_ui(datas)
 
         self.cancel = QtWidgets.QPushButton()
@@ -54,24 +46,17 @@ class showmsg(QtWidgets.QWidget):
         i = 1
         for item in datas:
             name = item['name']
-            time = item['time']
-            msg = item['msg']
-            id = int(item['id'])
+            id = item['house_id']
 
             group_box = QtWidgets.QGroupBox()
-            group_box.setTitle('第{}条留言'.format(i))
+            group_box.setTitle('第{}个人员'.format(i))
             i += 1
 
-            layout = QtWidgets.QVBoxLayout(group_box)
+            layout = QtWidgets.QHBoxLayout(group_box)
 
             label = QtWidgets.QLabel()
-            label.setText("{}于{}留言:".format(name, time))
+            label.setText("{}于{}号住房居住".format(name, id))
             layout.addWidget(label)
-
-            testedit = QtWidgets.QTextEdit()
-            testedit.setFixedSize(200, 80)
-            testedit.setText(msg)
-            layout.addWidget(testedit)
 
             # must save id as myid in myButton function
             # because id value is vary, need a place to hold
@@ -85,9 +70,12 @@ class showmsg(QtWidgets.QWidget):
             if global_vars.signinType == global_vars.admin:
                 layout.addWidget(myButton())
 
+                label.setText("{}于{}号住房居住, 密码为{}".format(name, id, item['password']))
+
             self.top_layout.addWidget(group_box)
-    def del_msg(self, id):
-        result = manager.manager.message_manager.del_msg(id)
+    def del_man(self, id):
+        print("Try to dele " + str(id))
+        result = manager.manager.account_manager.del_man(id)
 
         _error = manager.manager.ui_manager.create_error()
         self.addChild(_error)
@@ -95,8 +83,11 @@ class showmsg(QtWidgets.QWidget):
         if result == 0:
             _error.set_message("删除失败")
         else:
-            _error.set_message("删除成功，正在刷新留言信息表")
+            _error.set_message("成功，正在刷新人员")
             _error.set_size(10)
+
+            result = manager.manager.ui_manager.create_showman()
+            result.show()
 
             self.refresh()
 
@@ -105,9 +96,9 @@ class showmsg(QtWidgets.QWidget):
         self.refresh()
 
     def close(self):
-        print("try to close showmsg...")
+        print("try to close showman...")
         super().close()
-        global_vars.window_list['showmsg'] = None
+        global_vars.window_list['showman'] = None
         del self
 
         manager.manager.ui_manager.require_set_default()
@@ -116,12 +107,5 @@ class showmsg(QtWidgets.QWidget):
         self.childs.append(child)
     def closeEvent(self, event):
         self.close()
-    def change_complain_checked(self):
-        if self.complainChecked is False:
-            self.complainChecked = True
-        else:
-            self.complainChecked = False
-        self.refresh()
-
     def show(self):
-        manager.manager.ui_manager.require_set_self(self, "查看留言")
+        manager.manager.ui_manager.require_set_self(self, "查看人员")

@@ -19,6 +19,7 @@ class mainwin(QWidget):
         self.ui.addmsg.clicked.connect(self.show_addmsg)
         self.ui.showmsg.clicked.connect(self.show_showmsg)
         self.ui.alterfee.clicked.connect(self.show_alterfee)
+        self.ui.showman.clicked.connect(self.show_showman)
     def show_signin(self):
         try:
             signin = manager.manager.ui_manager.create_signin()
@@ -102,6 +103,16 @@ class mainwin(QWidget):
             print(e)
             _error = mmu.create_error(tip="失败")
             self.addChild(_error)
+            _error.show()
+    def show_showman(self):
+        mmu = manager.manager.ui_manager
+        try:
+            showman = mmu.create_showman()
+            self.addChild(showman)
+            showman.show()
+        except Exception as e:
+            print(e)
+            _error = mmu.create_error(tip="失败")
             _error.show()
     def addChild(self, child):
         self.childs.append(child)

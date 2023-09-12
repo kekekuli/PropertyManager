@@ -57,7 +57,7 @@ class Ui_Form(object):
         self.groupBox_2 = QtWidgets.QGroupBox(self.verticalLayoutWidget)
         self.groupBox_2.setObjectName("groupBox_2")
         self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.groupBox_2)
-        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(140, 19, 101, 91))
+        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(140, 19, 102, 100))
         self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -68,6 +68,9 @@ class Ui_Form(object):
         self.test4 = QtWidgets.QPushButton(self.verticalLayoutWidget_4)
         self.test4.setObjectName("test4")
         self.verticalLayout_4.addWidget(self.test4)
+        self.showman = QtWidgets.QPushButton(self.verticalLayoutWidget_4)
+        self.showman.setObjectName("showman")
+        self.verticalLayout_4.addWidget(self.showman)
         self.verticalLayout.addWidget(self.groupBox_2)
 
         self.retranslateUi(Form)
@@ -86,3 +89,4 @@ class Ui_Form(object):
         self.groupBox_2.setTitle(_translate("Form", "管理员"))
         self.alterfee.setText(_translate("Form", "修改物业费"))
         self.test4.setText(_translate("Form", "更改信息"))
+        self.showman.setText(_translate("Form", "显示人员"))

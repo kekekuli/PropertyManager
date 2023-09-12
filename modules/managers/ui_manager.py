@@ -7,7 +7,7 @@ import pymysql
 from modules import global_vars, database
 from modules.UI.UI_use import signup_use, error_use, signin_use,\
     queryfee_use, mainwin_use, selfinfo_use, addmsg_use, showmsg_use,\
-    alterfee_use, menu_use
+    alterfee_use, menu_use, showman_use
 from PyQt5.QtWidgets import QApplication
 
 class core:
@@ -46,8 +46,8 @@ class core:
         return global_vars.window_list['queryfee']
     @staticmethod
     def create_selfinfo():
-        if global_vars.signinID is None:
-            raise Exception("请先登陆")
+        if global_vars.signinID is None or global_vars.signinType != global_vars.user:
+            raise Exception("非普通用户")
         if global_vars.window_list['selfinfo'] is None:
             print("Create new selfinfo")
             global_vars.window_list['selfinfo'] = selfinfo_use.selfinfo()
@@ -85,6 +85,12 @@ class core:
             global_vars.window_list['menu'] = menu_use.menu()
         return global_vars.window_list['menu']
 
+    @staticmethod
+    def create_showman():
+        if global_vars.window_list['showman'] is None:
+            print("Create new showman")
+            global_vars.window_list['showman'] = showman_use.showman()
+        return global_vars.window_list['showman']
     # require set self to be current win
     @staticmethod
     def require_set_self(win, win_name):

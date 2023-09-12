@@ -106,6 +106,14 @@ class core:
         sql = sql.format(datas['charge_time'], datas['paid'], datas['property_fee'],
                          datas['park_fee'], datas['other_fee'], datas['house_id'])
         return sql
+    @staticmethod
+    def get_allHouseholds_sql():
+        sql = 'select * from household'
+        return sql
+    @staticmethod
+    def get_delMan_sql(id):
+        sql = 'delete from household where house_id="{}"'.format(id);
+        return sql
 
     # return 0 if failed, other any value possible
     @staticmethod
