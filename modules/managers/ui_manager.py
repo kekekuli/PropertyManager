@@ -8,7 +8,8 @@ from modules import global_vars, database
 from modules.UI.UI_use import signup_use, error_use, signin_use,\
     queryfee_use, mainwin_use, selfinfo_use, addmsg_use, showmsg_use,\
     alterfee_use, menu_use, showman_use
-from PyQt5.QtWidgets import QApplication
+from modules.UI.UI_resourse import imageUI
+from PyQt5.QtWidgets import QApplication, QWidget
 
 class core:
     @staticmethod
@@ -91,6 +92,13 @@ class core:
             print("Create new showman")
             global_vars.window_list['showman'] = showman_use.showman()
         return global_vars.window_list['showman']
+    # This is special, not like others have image_use.py, because I'm lazy
+    @staticmethod
+    def create_image():
+        widget = QWidget()
+        ui = imageUI.Ui_Form()
+        ui.setupUi(widget)
+        return widget
     # require set self to be current win
     @staticmethod
     def require_set_self(win, win_name):

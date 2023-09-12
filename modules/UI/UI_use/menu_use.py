@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 from modules.managers import manager
 from modules import global_vars
 
@@ -100,7 +101,10 @@ class menu(QWidget):
         copyright_layout.addWidget(label4)
         label4.setStyleSheet("background-color: #e3b88a")
 
+        image = manager.manager.ui_manager.create_image()
+
         self.left_layout.addWidget(user_widget)
+        self.left_layout.addWidget(image)
         self.left_layout.addWidget(copyright_widget)
 
     # Goback the default win
