@@ -6,7 +6,7 @@ from modules.managers import manager
 class signup(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.ui = signupUI.Ui_MainWindow()
+        self.ui = signupUI.Ui_Form()
         self.setWindowTitle("singup")
         self.ui.setupUi(self)
         self.childs = []
