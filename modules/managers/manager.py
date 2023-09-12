@@ -33,11 +33,22 @@ class manager:
     def login(house_id, userType):
         global_vars.signinID = house_id
         global_vars.signinType = userType
+        print(userType)
 
+        menu = global_vars.window_list['menu']
+        menu.refresh_left()
     @staticmethod
     def logout():
         global_vars.signinID = None
         global_vars.signinType = None
+
+        menu = global_vars.window_list['menu']
+        menu.refresh_left()
     @staticmethod
     def get_signinID():
         return global_vars.signinID
+    @staticmethod
+    def set_font_size(object, size):
+        font = object.font()
+        font.setPointSize(size)
+        object.setFont(font)

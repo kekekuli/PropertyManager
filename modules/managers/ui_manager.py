@@ -7,7 +7,7 @@ import pymysql
 from modules import global_vars, database
 from modules.UI.UI_use import signup_use, error_use, signin_use,\
     queryfee_use, mainwin_use, selfinfo_use, addmsg_use, showmsg_use,\
-    alterfee_use
+    alterfee_use, menu_use
 from PyQt5.QtWidgets import QApplication
 
 class core:
@@ -78,3 +78,27 @@ class core:
             print("Create new alterfee")
             global_vars.window_list['alterfee'] = alterfee_use.alterfee()
         return global_vars.window_list['alterfee']
+    @staticmethod
+    def create_menu():
+        if global_vars.window_list['menu'] is None:
+            print("Create new menu")
+            global_vars.window_list['menu'] = menu_use.menu()
+        return global_vars.window_list['menu']
+
+    # require set self to be current win
+    @staticmethod
+    def require_set_self(win, win_name):
+        if global_vars.window_list['menu'] is None:
+            print("menu not have created")
+            return
+        menu = global_vars.window_list['menu']
+        menu.set_exe_win(win)
+        menu.set_title(win_name)
+    @staticmethod
+    def require_set_default():
+        if global_vars.window_list['menu'] is None:
+            print("menu not have created")
+            return
+        menu = global_vars.window_list['menu']
+        menu.set_exe_win(menu.default_win)
+        menu.set_title("主界面")

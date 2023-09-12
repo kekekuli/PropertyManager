@@ -40,6 +40,12 @@ class showmsg(QtWidgets.QWidget):
         datas = msgm.read_msg(self.complainChecked)
         self.set_ui(datas)
 
+        self.cancel = QtWidgets.QPushButton()
+        self.cancel.setFixedSize(45, 30)
+        self.cancel.setText("返回")
+        self.cancel.clicked.connect(self.close)
+
+        self.lay.addWidget(self.cancel)
         self.top_widget.setLayout(self.top_layout)
         self.scrollArea.setWidget(self.top_widget)
         self.resize(300, 400)
@@ -106,6 +112,9 @@ class showmsg(QtWidgets.QWidget):
         super().close()
         global_vars.window_list['showmsg'] = None
         del self
+
+        manager.manager.ui_manager.require_set_default()
+
     def addChild(self, child):
         self.childs.append(child)
     def closeEvent(self, event):
@@ -116,9 +125,6 @@ class showmsg(QtWidgets.QWidget):
         else:
             self.complainChecked = False
         self.refresh()
-if __name__ == '__main__':
-    manager.manager.setup()
-    app = QtWidgets.QApplication(sys.argv)
-    a = showmsg()
-    a.show()
-    sys.exit(app.exec_())
+
+    def show(self):
+        manager.manager.ui_manager.require_set_self(self, "查看留言")

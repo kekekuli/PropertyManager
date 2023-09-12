@@ -14,7 +14,6 @@ class mainwin(QWidget):
 
         self.ui.test1.clicked.connect(self.show_signin)
         self.ui.test2.clicked.connect(self.show_signup)
-        self.ui.test3.clicked.connect(self.show_queryfee)
         self.ui.test4.clicked.connect(self.show_selfinfo)
         self.ui.logout.clicked.connect(self.show_logout)
         self.ui.addmsg.clicked.connect(self.show_addmsg)
@@ -113,5 +112,8 @@ class mainwin(QWidget):
         super().close()
         global_vars.window_list['mainwin'] = None
         del self
+
+        manager.manager.ui_manager.require_set_default()
+
     def closeEvent(self, event):
         self.close()

@@ -22,5 +22,6 @@ class error(QWidget):
     def close(self):
         super().close()
         del self
+
     def closeEvent(self, event):
         self.close()

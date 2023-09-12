@@ -85,9 +85,15 @@ class selfinfo(QWidget):
         super().close()
         global_vars.window_list['selfinfo'] = None
         del self
+
+        manager.manager.ui_manager.require_set_default()
+
     def closeEvent(self, event):
         self.close()
+
     def disenable_title(self):
         self.ui.canva.deleteLater()
     def set_signinID(self, id):
         self.signinID = id
+    def show(self):
+        manager.manager.ui_manager.require_set_self(self, "修改信息")

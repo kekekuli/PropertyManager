@@ -53,5 +53,11 @@ class queryfee(QWidget):
         super().close()
         global_vars.window_list['queryfee'] = None
         del self
+
+        manager.manager.ui_manager.require_set_default()
+
     def closeEvent(self, event):
         self.close()
+
+    def show(self):
+        manager.manager.ui_manager.require_set_self(self, "查询物业费")

@@ -21,8 +21,12 @@ class addmsg(QWidget):
         super().close()
         global_vars.window_list['addmsg'] = None
         del self
+
+        manager.manager.ui_manager.require_set_default()
+
     def closeEvent(self, event):
         self.close()
+
     def submit(self):
         _msg = self.get_msg()
         _complain = self.get_complain()
@@ -61,3 +65,6 @@ class addmsg(QWidget):
             return -1
     def addChild(self, child):
         self.childs.append(child)
+
+    def show(self):
+        manager.manager.ui_manager.require_set_self(self, "添加留言")

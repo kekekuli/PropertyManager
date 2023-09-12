@@ -42,7 +42,6 @@ class signin(QWidget):
         datas = self.get_datas()
         result = manager.manager.account_manager.signin_auth(datas['house_id'], datas['password'], self.signType);
         if result == 0:
-            self.signStatus.emit(-1, self.signType)
             _error = manager.manager.ui_manager.create_error(tip="登陆失败")
             self.addChild(_error)
             _error.show()
@@ -61,8 +60,12 @@ class signin(QWidget):
         super().close()
         global_vars.window_list['signin'] = None
         del self
+
+        manager.manager.ui_manager.require_set_default()
+
     def closeEvent(self, event):
         self.close()
+
     def user_trigger(self):
         self.ui.userCheck.setChecked(True)
         self.ui.adminCheck.setChecked(False)
@@ -73,3 +76,5 @@ class signin(QWidget):
         self.ui.adminCheck.setChecked(True)
 
         self.signType = global_vars.admin
+    def show(self):
+        manager.manager.ui_manager.require_set_self(self, "登陆")

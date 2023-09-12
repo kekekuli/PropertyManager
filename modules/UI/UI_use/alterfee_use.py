@@ -21,7 +21,17 @@ class alterfee(QtWidgets.QWidget):
         super().close()
         global_vars.window_list['alterfee'] = None
         del self
+
+        manager.manager.ui_manager.require_set_default()
+
+    def closeEvent(self, event):
+        self.close()
+
     def change_fee(self):
+        if global_vars.signinType != global_vars.admin:
+            self.right_limit()
+            return
+
         datas = self.get_datas()
 
         if bool(datas) is False:
@@ -68,6 +78,10 @@ class alterfee(QtWidgets.QWidget):
     def get_inputID(self):
         return self.ui.house_id.text()
     def del_fee(self):
+        if global_vars.signinType != global_vars.admin:
+            self.right_limit()
+            return
+
         id = self.get_inputID()
         result = manager.manager.fees_manager.del_fee(id)
 
@@ -119,6 +133,10 @@ class alterfee(QtWidgets.QWidget):
 
             return -1
     def create_fee(self):
+        if global_vars.signinType != global_vars.admin:
+            self.right_limit()
+            return
+
         datas = self.get_datas()
         if bool(datas) is False:
             return
@@ -147,3 +165,10 @@ class alterfee(QtWidgets.QWidget):
             _error = manager.manager.ui_manager.create_error(tip=str(e), size=12)
             self.addChild(_error)
             _error.show()
+
+    def show(self):
+        manager.manager.ui_manager.require_set_self(self, "修改物业费")
+    def right_limit(self):
+        _error = manager.manager.ui_manager.create_error(tip="权限不够")
+        self.addChild(_error)
+        _error.show()
