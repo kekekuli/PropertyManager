@@ -62,7 +62,12 @@ class core:
         full_date = datetime.now()
         time = "{}-{}-{}".format(full_date.year, full_date.month, full_date.day)
 
-        name_sql = core.get_getHousehold_sql(global_vars.signinID)
+        name_sql = ""
+        if global_vars.signinType == global_vars.user:
+            name_sql = core.get_getHousehold_sql(global_vars.signinID)
+        elif global_vars.signinType == global_vars.admin:
+            name_sql = core.get_queryAdmin_sql(global_vars.signinID)
+
         datas = core.execute_query(name_sql)
         name = datas['name']
 
