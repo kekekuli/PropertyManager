@@ -45,8 +45,8 @@ class selfinfo(QWidget):
     def read_signin_statu(self):
         signinID = self.signinID
         datas = manager.manager.account_manager.get_household(signinID)
-        msg = "尊敬的{}号住户业主{}，选择你要更改的信息".format(datas['house_id'], datas['name'])
-        self.ui.canva.setText(msg)
+        # msg = "尊敬的{}号住户业主{}，选择你要更改的信息".format(datas['house_id'], datas['name'])
+        # self.ui.canva.setText(msg)
         self.ui.name.setText(datas['name'])
         self.ui.password.setText(datas['password'])
         self.ui.phone.setText(datas['phone'])
